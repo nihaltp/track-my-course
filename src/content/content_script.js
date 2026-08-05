@@ -4,8 +4,7 @@ const SELECTORS = {
 
     watchPage: {
         playlistItems: "#playlist:not([hidden]) #items",
-        playlistMenu:
-            "#playlist:not([hidden]) h3.ytd-playlist-panel-renderer:has(yt-formatted-string.title)",
+        playlistMenu: "#playlist:not([hidden]) h3.ytd-playlist-panel-renderer:has(.title)",
         headerContents: "#playlist:not([hidden]) #header-contents",
         playlistActions: "#playlist:not([hidden]) #playlist-actions",
         recommendations: "#related",
@@ -474,7 +473,7 @@ async function renderWPStartCourseBtn({ signal }) {
             state.courseImgSrc = await imgSrcToBase64(playlistItems.querySelector("img")?.src);
             state.courseName = document.querySelector(
                 "#playlist:not([hidden]) #header-contents .title"
-            ).title;
+            ).textContent;
             saveCourseState();
             showToast("Course Started");
         } catch (err) {
